@@ -1,15 +1,17 @@
-package com.ascendix.ascendix.model;
+package com.ascendix.ascendix.dtos;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "orders")
-public class Order {
-
-	@Id
+public class OrderDTO {
 	private String id;
 	private String name;
 	
+	public OrderDTO(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	public OrderDTO() {
+	}
+
 	public String getId() {
 		return id;
 	}
@@ -22,6 +24,4 @@ public class Order {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
 }

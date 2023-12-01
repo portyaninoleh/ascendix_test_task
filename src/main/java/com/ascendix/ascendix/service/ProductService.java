@@ -1,8 +1,14 @@
 package com.ascendix.ascendix.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
-@Service
-public class ProductService {
+import com.ascendix.ascendix.dtos.ProductDTO;
 
+public interface ProductService {
+
+	void createProduct(ProductDTO productDto);
+	ProductDTO getProductById(String productId);
+	void updateProduct(ProductDTO productDto);
+	void deleteProductById(String productId);
+	List<ProductDTO> getOrderProducts(String orderId);
 }
