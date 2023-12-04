@@ -1,7 +1,10 @@
 package com.ascendix.ascendix.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.data.mongodb.MongoDatabaseFactory;
 import org.springframework.data.mongodb.MongoTransactionManager;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
@@ -14,7 +17,10 @@ import com.mongodb.client.MongoClients;
 
 @Configuration
 @EnableMongoRepositories(basePackages = "com.ascendix.ascendix.repository")
+@Profile("dev")
 public class MongoConfig extends AbstractMongoClientConfiguration {
+    @Autowired
+    private Environment environment;
 
 	@Bean
 	MongoTransactionManager transactionManager(MongoDatabaseFactory dbFactory) {
@@ -28,7 +34,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 	
     @Override
     public MongoClient mongoClient() {
-        final ConnectionString connectionString = new ConnectionString("mongodb://mongodb/docker-db");
+    	ConnectionString connectionString = new ConnectionString("mongodb://mongodb/docker-db");
         final MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
             .applyConnectionString(connectionString)
             .build();
