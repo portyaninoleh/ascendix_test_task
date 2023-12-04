@@ -8,12 +8,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
 import com.ascendix.ascendix.model.Order;
 
 @SpringBootTest
 @Testcontainers
+@ActiveProfiles("test")
 public class OrderRepositoryTest extends BaseTest {
 
 	@AfterEach
